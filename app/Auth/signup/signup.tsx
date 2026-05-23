@@ -1,9 +1,22 @@
 import signupAction from '@/serverAction/signupAction/signupAction'
+import { useActionState } from 'react'
 
-export default function signup() {
+
+
+export default function Signup() {
+
+    const [state , formAction , pending] = useActionState(signupAction,{success:null , error:{} ,message:''})
+
+
     return (
 
-        <form action={signupAction} className='flex flex-col gap-7'>
+        <form action={formAction} className='flex flex-col gap-7'>
+            
+            {
+                (state.success === false) ? <p className=' h-10 text-red-600 border-red-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> 
+                : (state.success === true) ? <p className=' h-10 text-green-600 border-green-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> : null
+            }
+
             <div className=' flex flex-col gap-1'>
                 <label htmlFor="">Firstname</label>
                 <input name="firstname" className=' h-10 border-2 w-65 rounded-2xl' type="text" />
