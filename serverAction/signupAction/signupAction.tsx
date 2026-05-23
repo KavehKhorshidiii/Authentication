@@ -34,7 +34,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
 
 
         // return
-
+        
         if (!firstname || !lastname || !username || !email || !password) {
             return {
                 success: false,
