@@ -27,7 +27,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         }
 
 
-        
+
         // Validation
 
 
@@ -55,10 +55,6 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             error: {},
             message: 'SignUp is Successfully'
         }
-
-
-
-
 
     } catch (error) {
 
