@@ -3,13 +3,11 @@ import { userModel } from '@/models/userModel'
 import connectToDB from '@/configs/db/conection'
 
 
-
 type ActionStateType = {
     success: boolean | null,
     error: object,
     message: string
 }
-
 
 
 export default async function SignupAction(prevState: ActionStateType, formData: FormData): Promise<ActionStateType> {
