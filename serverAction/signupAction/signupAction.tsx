@@ -27,14 +27,17 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         }
 
 
+        
         // Validation
+
 
 
         // is User Exist(Check User Data in DB)
 
 
+
         // return
-        
+
         if (!firstname || !lastname || !username || !email || !password) {
             return {
                 success: false,
