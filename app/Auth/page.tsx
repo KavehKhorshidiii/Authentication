@@ -1,6 +1,6 @@
 'use client'
-import Singup from '@/app/Auth/singup/signup'
-import Singin from '@/app/Auth/singin/singin'
+import Singup from '@/app/Auth/signup/signup'
+import Singin from '@/app/Auth/signin/singin'
 import { useState } from 'react'
 
 
