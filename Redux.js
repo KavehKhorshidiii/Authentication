@@ -5,7 +5,3 @@
 //     ["ali" , "reza" , "mashala"]
 // ]
 
-// let myBox = products.reduce((prevArray , nextArray)=>{
-//     console.log(prevArray , nextArray)
-//     return [... prevArray , ...nextArray]
-// })
