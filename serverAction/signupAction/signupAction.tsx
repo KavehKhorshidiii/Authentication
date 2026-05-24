@@ -13,6 +13,7 @@ type ActionStateType = {
 export default async function SignupAction(prevState: ActionStateType, formData: FormData): Promise<ActionStateType> {
 
     try {
+
         await connectToDB()
 
         //Get to FormData
@@ -33,14 +34,14 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             }
         }
 
+        // is User Exist 
         const userExists = await userModel.findOne({ $or: [{ username: username }, { email: email }] }).select('username email')
         if(!!userExists){
-
+            if(userExists.username === username){return {success:false , error:{} , message:"A user has already registered with this username."}}else{
+                return {success:false , error:{} , message:"A user has already registered with this email."}
+            }
         }
-        console.log(userExists)
 
-        // exsist -> {_id: new ObjectId('6a12b02993f5c4776f5fa029'), username: 'kaveh-khorshidi', email: 'kavehkhorshidiii@gmail.com' }
-        // not Exsist -> null
 
 
         // Hash Password
