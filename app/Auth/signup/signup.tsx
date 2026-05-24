@@ -12,8 +12,8 @@ export default function Signup() {
         <form action={formAction} className='flex flex-col gap-7'>
             
             {
-                (state.success === false) ? <p className=' h-10 p-6 text-red-600 border-red-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> 
-                : (state.success === true) ? <p className=' h-10 p-6 text-green-600 border-green-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> : null
+                (state.success === false) ? <p className=' p-2 text-red-600 border-red-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> 
+                : (state.success === true) ? <p className=' p-2 text-green-600 border-green-600 flex items-center justify-center border-2 w-65 rounded-2xl'>{state.message}</p> : null
             }
 
             <div className=' flex flex-col gap-1'>
@@ -29,7 +29,7 @@ export default function Signup() {
                 <input name="password" className=' h-10  border-2 w-65 rounded-2xl' type="text" />
             </div>
 
-            <button className=' bg-amber-50 text-black  h-10  border-2 w-65  rounded-2xl'>Sign up</button>
+            <button className=' bg-amber-50 text-black  h-10  border-2 w-65  rounded-2xl'>{pending ? 'Loading...' : 'Sign up'}</button>
         </form>
 
     )
