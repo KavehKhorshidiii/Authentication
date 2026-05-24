@@ -33,11 +33,14 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             }
         }
 
-        // is User Exist(Check User Data in DB)
-        const userExistsWithEmail = await userModel.exists({ email: email})
-        if(!!userExistsWithEmail){return {success:false , error:{} , message:"a user has already registered with this email."}}
-        const userExistsWithUsername = await userModel.exists({ username: username})
-        if(!!userExistsWithUsername){return {success:false , error:{} , message:"a user has already registered with this username."}}
+        const userExists = await userModel.findOne({ $or: [{ username: username }, { email: email }] }).select('username email')
+        if(!!userExists){
+
+        }
+        console.log(userExists)
+
+        // exsist -> {_id: new ObjectId('6a12b02993f5c4776f5fa029'), username: 'kaveh-khorshidi', email: 'kavehkhorshidiii@gmail.com' }
+        // not Exsist -> null
 
 
         // Hash Password
@@ -45,21 +48,21 @@ export default async function SignupAction(prevState: ActionStateType, formData:
 
         // SignUp (Create User)
         await userModel.create({ firstname, lastname, username, email, password })
-        return {
-            success: true,
-            error: {},
-            message: 'SignUp is Successfully'
-        }
-
-    } catch (error) {
-
-        return {
-            success: false,
-            error: error as object,
-            message: 'create Error'
-        }
-
+    return {
+        success: true,
+        error: {},
+        message: 'SignUp is Successfully'
     }
+
+} catch (error) {
+
+    return {
+        success: false,
+        error: error as object,
+        message: 'create Error'
+    }
+
+}
 
 }
 
