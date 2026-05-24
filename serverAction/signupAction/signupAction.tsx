@@ -34,16 +34,10 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         }
 
         // is User Exist(Check User Data in DB)
-        const userExists = await userModel.exists({ email: email })
-        if(!!userExists){
-            return {success:false , error:{} , message:"a user has already registered with this email."}
-        }
-        //console.log('userExists ->', userExists)
-
-
-        // !!
-        // Exists -> { _id: new ObjectId('6a12b02993f5c4776f5fa029') }
-        // not Exists -> null
+        const userExistsWithEmail = await userModel.exists({ email: email})
+        if(!!userExistsWithEmail){return {success:false , error:{} , message:"a user has already registered with this email."}}
+        const userExistsWithUsername = await userModel.exists({ username: username})
+        if(!!userExistsWithUsername){return {success:false , error:{} , message:"a user has already registered with this username."}}
 
 
         // Hash Password
