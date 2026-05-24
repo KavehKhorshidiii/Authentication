@@ -13,9 +13,9 @@ type ActionStateType = {
 export default async function SignupAction(prevState: ActionStateType, formData: FormData): Promise<ActionStateType> {
 
     try {
-
         await connectToDB()
 
+        //Get to FormData
         const { firstname, lastname, username, email, password } = {
             firstname: formData.get('firstname'),
             lastname: formData.get('lastname'),
@@ -24,18 +24,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             password: formData.get('password'),
         }
 
-
-
         // Validation
-
-
-
-        // is User Exist(Check User Data in DB)
-
-
-
-        // return
-
         if (!firstname || !lastname || !username || !email || !password) {
             return {
                 success: false,
@@ -44,9 +33,20 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             }
         }
 
+        // is User Exist(Check User Data in DB)
 
 
-        // SignUp
+
+
+
+
+
+
+
+        // Hash Password
+        //GenerateToken
+
+        // SignUp (Create User)
         await userModel.create({ firstname, lastname, username, email, password })
         return {
             success: true,
