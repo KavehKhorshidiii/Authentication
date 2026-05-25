@@ -1,7 +1,7 @@
 'use server'
 import { userModel } from '@/models/userModel'
 import connectToDB from '@/configs/db/conection'
-import { Hash } from 'crypto'
+import HashPassword from '@/utils/auth'
 
 
 // prev State And OutPut type
@@ -46,13 +46,13 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         }
 
         // Hash Password
-
-
+        const HashPass:string = await HashPassword(password)
 
         //GenerateToken
+        // const cookie = (await cookies()).set('token',`usersname:${username}email:${email}`)
 
         // SignUp (Create User)
-        await userModel.create({ firstname, lastname, username, email, password })
+        await userModel.create({ firstname, lastname, username, email, password:HashPass })
         return {
             success: true,
             error: {},
