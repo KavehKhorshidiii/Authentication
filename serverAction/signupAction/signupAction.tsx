@@ -1,7 +1,11 @@
 'use server'
 import { userModel } from '@/models/userModel'
 import connectToDB from '@/configs/db/conection'
-import HashPassword from '@/utils/auth'
+import { HashPassword } from '@/utils/auth'
+import { Token } from '@/utils/auth'
+import { cookies } from "next/headers" // Cookie
+
+
 
 
 // prev State And OutPut type
@@ -46,13 +50,24 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         }
 
         // Hash Password
-        const HashPass:string = await HashPassword(password)
+        const HashPass: string = await HashPassword(password)
 
         //GenerateToken
-        // const cookie = (await cookies()).set('token',`usersname:${username}email:${email}`)
+        const TheToken = await Token({ username, email })
+
+        // Cookie
+        const cookie = await cookies()
+        cookie.set('token', TheToken, {
+            // http Only Cookie
+            httpOnly: true,  
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 24 * 7,  // 1Week
+            path: '/'
+        })
 
         // SignUp (Create User)
-        await userModel.create({ firstname, lastname, username, email, password:HashPass })
+        await userModel.create({ firstname, lastname, username, email, password: HashPass })
         return {
             success: true,
             error: {},
