@@ -1,8 +1,10 @@
 'use server'
 import { userModel } from '@/models/userModel'
 import connectToDB from '@/configs/db/conection'
+import { Hash } from 'crypto'
 
 
+// prev State And OutPut type
 type ActionStateType = {
     success: boolean | null,
     error: object,
@@ -14,6 +16,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
 
     try {
 
+        // DB Connection
         await connectToDB()
 
         //Get to FormData
@@ -36,34 +39,35 @@ export default async function SignupAction(prevState: ActionStateType, formData:
 
         // is User Exist 
         const userExists = await userModel.findOne({ $or: [{ username: username }, { email: email }] }).select('username email')
-        if(!!userExists){
-            if(userExists.username === username){return {success:false , error:{} , message:"A user has already registered with this username."}}else{
-                return {success:false , error:{} , message:"A user has already registered with this email."}
+        if (!!userExists) {
+            if (userExists.username === username) { return { success: false, error: {}, message: "A user has already registered with this username." } } else {
+                return { success: false, error: {}, message: "A user has already registered with this email." }
             }
         }
 
-
-
         // Hash Password
+
+
+
         //GenerateToken
 
         // SignUp (Create User)
         await userModel.create({ firstname, lastname, username, email, password })
-    return {
-        success: true,
-        error: {},
-        message: 'SignUp is Successfully'
+        return {
+            success: true,
+            error: {},
+            message: 'SignUp is Successfully'
+        }
+
+    } catch (error) {
+
+        return {
+            success: false,
+            error: error as object,
+            message: 'create Error'
+        }
+
     }
-
-} catch (error) {
-
-    return {
-        success: false,
-        error: error as object,
-        message: 'create Error'
-    }
-
-}
 
 }
 
