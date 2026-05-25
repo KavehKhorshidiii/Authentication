@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'; // JWT
 
 
 
+
 // Hash Password
 async function HashPassword(pass) {
     const HashPass = await hash(pass, 12)
