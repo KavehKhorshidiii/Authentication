@@ -7,13 +7,13 @@ import { cookies } from "next/headers" // Cookie
 
 
 
-
 // prev State And OutPut type
 type ActionStateType = {
     success: boolean | null,
     error: object,
     message: string
 }
+
 
 
 export default async function SignupAction(prevState: ActionStateType, formData: FormData): Promise<ActionStateType> {
@@ -23,13 +23,17 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         // DB Connection
         await connectToDB()
 
+        // Users Length
+        const usersLength = await userModel.find() // === 0 ? "Adimn" : "USER"
+
         //Get to FormData
-        const { firstname, lastname, username, email, password } = {
+        const { firstname, lastname, username, email, password, role } = {
             firstname: formData.get('firstname'),
             lastname: formData.get('lastname'),
             username: formData.get('username'),
             email: formData.get('email'),
             password: formData.get('password'),
+            role: usersLength.length === 0 ? "Adimn" : "USER"
         }
 
         // Validation
@@ -59,7 +63,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         const cookie = await cookies()
         cookie.set('token', TheToken, {
             // http Only Cookie
-            httpOnly: true,  
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
             maxAge: 60 * 60 * 24 * 7,  // 1Week
@@ -67,7 +71,8 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         })
 
         // SignUp (Create User)
-        await userModel.create({ firstname, lastname, username, email, password: HashPass })
+        await userModel.create({ firstname, lastname, username, email, password: HashPass, role })
+
         return {
             success: true,
             error: {},

@@ -2,12 +2,12 @@ import { hash } from "bcryptjs" // Hash Password
 import jwt from 'jsonwebtoken'; // JWT 
 
 
-
 // Hash Password
 async function HashPassword(pass) {
     const HashPass = await hash(pass, 12)
     return HashPass
 }
+
 
 // JWT token
 async function Token(x) {
