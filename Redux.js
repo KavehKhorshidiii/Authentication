@@ -43,7 +43,6 @@ function addNumberReducer (action) {
 
 }
 
-
 // To-Do Reducer
 function TodoReducer (action){
     switch (action.type){
