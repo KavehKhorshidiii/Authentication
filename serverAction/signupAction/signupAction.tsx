@@ -4,7 +4,7 @@ import connectToDB from '@/configs/db/conection'
 import { HashPassword } from '@/utils/auth'
 import { Token } from '@/utils/auth'
 import { cookies } from "next/headers" // Cookie
-
+import { revalidatePath } from 'next/cache'
 
 
 // prev State And OutPut type
@@ -72,6 +72,9 @@ export default async function SignupAction(prevState: ActionStateType, formData:
 
         // SignUp (Create User)
         await userModel.create({ firstname, lastname, username, email, password: HashPass, role })
+
+        // Revalidate Home Page
+        revalidatePath('/')
 
         return {
             success: true,
