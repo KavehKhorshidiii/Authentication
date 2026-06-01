@@ -36,3 +36,4 @@ async function Token(data) {
 
 export { Token, HashPassword }
 
+
