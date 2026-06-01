@@ -24,7 +24,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         await connectToDB()
 
         // Users Length
-        const usersLength = await userModel.find() // === 0 ? "Adimn" : "USER"
+        const usersLength = await userModel.find() // usersLength.length === 0 ? "Admin" : "USER"
 
         //Get to FormData
         const { firstname, lastname, username, email, password, role } = {
@@ -33,7 +33,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             username: formData.get('username'),
             email: formData.get('email'),
             password: formData.get('password'),
-            role: usersLength.length === 0 ? "Adimn" : "USER"
+            role: usersLength.length === 0 ? "Admin" : "USER"
         }
 
         // Validation

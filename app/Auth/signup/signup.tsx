@@ -5,7 +5,7 @@ import { useActionState } from 'react'
 
 export default function Signup() {
 
-    const [state, formAction, pending] = useActionState(signupAction, { success: null, error: {}, message: '' })
+    const [state, formAction, pending] = useActionState(signupAction , { success: null, error: {}, message: '' })
 
 
     return (

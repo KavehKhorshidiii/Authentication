@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function login() {
     return (
         <form className="flex flex-col gap-7 ">

@@ -11,13 +11,13 @@ async function HashPassword(pass) {
 
 
 // JWT token
-async function Token(x) {
+async function Token(data) {
 
     // Token
     const theToken = await jwt.sign(
 
         {
-            ...x,
+            ...data,
             iat: Math.floor(Date.now() / 1000),
         },
 
