@@ -22,7 +22,7 @@ export default function Signin() {
                 <input name="password" className=" h-10  border-2 w-65  rounded-2xl" type="text" />
             </div>
 
-            <button type="submit" className=" bg-amber-50 text-black  h-10  border-2 w-65  rounded-2xl">{pending ? "Loading..." : "Sign in"}</button>
+            <button type="submit" className=" active:bg-amber-900 bg-amber-50 text-black  h-10  border-2 w-65  rounded-2xl">{pending ? "Loading..." : "Sign in"}</button>
         </form>
     );
 }
