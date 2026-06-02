@@ -17,12 +17,13 @@ export default async function Dashboard() {
     }
 
 
+    
     if (!myToken || !isVerifyToken) {
         redirect("/")
     }
 
 
-    
+
     const userData = await userModel.findById(isVerifyToken.userID).select("firstname")
 
 
