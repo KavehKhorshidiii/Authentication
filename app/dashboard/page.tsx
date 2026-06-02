@@ -8,7 +8,7 @@ export default async function Dashboard() {
     const cookieStore = await cookies();
     const myToken = cookieStore.get('token')?.value; // token value
 
-    
+
     let isVerifyToken;
     try {
         isVerifyToken = verifyToken(myToken)
@@ -21,7 +21,9 @@ export default async function Dashboard() {
         redirect("/")
     }
 
-    const userData = await userModel.findOne({ $or: [{ username: isVerifyToken.usernameOrEmail }, { email: isVerifyToken.usernameOrEmail }, { email: isVerifyToken.email }] }).select("firstname")
+
+    const userData = await userModel.findById(isVerifyToken.userID._id).select("firstname")
+    console.log(userData)
 
 
     return (

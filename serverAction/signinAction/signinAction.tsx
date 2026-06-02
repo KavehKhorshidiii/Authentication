@@ -36,7 +36,8 @@ export default async function SigninAction(prevState: ActionStateTypes, formData
     }
 
     // User Exists 
-    const userExists = await userModel.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).select("password firstname")
+    const userExists = await userModel.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).select("_id , password")
+    //console.log(userExists)
 
     // user Exists Check
     if (!userExists) {
@@ -51,7 +52,7 @@ export default async function SigninAction(prevState: ActionStateTypes, formData
         // password condition
         if (isMatch) {
 
-            const TheToken = await Token({ usernameOrEmail })
+            const TheToken = await Token({ userID: userExists})
 
             const cookie = await cookies()
             cookie.set('token', TheToken, {
