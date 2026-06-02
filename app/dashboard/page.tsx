@@ -9,6 +9,7 @@ export default async function Dashboard() {
     const myToken = cookieStore.get('token')?.value; // token value
 
 
+    
     let isVerifyToken;
     try {
         isVerifyToken = verifyToken(myToken)
@@ -17,7 +18,7 @@ export default async function Dashboard() {
     }
 
 
-    
+
     if (!myToken || !isVerifyToken) {
         redirect("/")
     }
