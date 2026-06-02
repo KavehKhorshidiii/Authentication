@@ -8,8 +8,13 @@ export default async function Dashboard() {
     const cookieStore = await cookies();
     const myToken = cookieStore.get('token')?.value; // token value
 
-
-    const isVerifyToken = verifyToken(myToken)
+    
+    let isVerifyToken;
+    try {
+        isVerifyToken = verifyToken(myToken)
+    } catch {
+        redirect("/")
+    }
 
 
     if (!myToken || !isVerifyToken) {

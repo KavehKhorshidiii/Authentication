@@ -55,8 +55,11 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         // Hash Password
         const HashPass: string = await HashPassword(password)
 
+        // SignUp (Create User)
+        const newUser = await userModel.create({ firstname, lastname, username, email, password: HashPass, role })
+        
         //GenerateToken
-        const TheToken = await Token({ username, email })
+        const TheToken = await Token({ userID : newUser._id })
 
         // Cookie
         const cookie = await cookies()
@@ -69,8 +72,6 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             path: '/'
         })
         
-        // SignUp (Create User)
-        await userModel.create({ firstname, lastname, username, email, password: HashPass, role })
         
         // Revalidate Home Page
         revalidatePath('/')
