@@ -1,6 +1,6 @@
 'use client'
-import Singup from '@/app/Auth/signup/signup'
-import Singin from '@/app/Auth/signin/singin'
+import Signup from './signup/signup'
+import Signin from './signin/signin'
 import { useState } from 'react'
 
 
@@ -25,7 +25,7 @@ export default function Auth() {
 
     return (
         <div className=' flex flex-col gap-5'>
-            {SigninOrSignup ? <Singin></Singin> : <Singup></Singup> }
+            {SigninOrSignup ? <Signin></Signin> : <Signup></Signup> }
             <div className=' gap-2 flex justify-center'>
                 <button onClick={BtnFuncSignin} className={` ${activeSignin ? ' bg-amber-50 shadow-inner shadow-black border-amber-50' : ''} p-1 border-2 text-black  bg-amber-50 rounded-2xl`}>Singin</button>
                 <button onClick={BtnFuncSignup} className={` ${activeSignup ? ' bg-amber-50 shadow-inner shadow-black border-amber-50' : ''} p-1 border-2 shadow-inner text-black  bg-amber-50 rounded-2xl`}>Singup</button>

@@ -1,14 +1,11 @@
 import { hash } from "bcryptjs" // Hash Password
 import jwt from 'jsonwebtoken'; // JWT 
 
-
-
 // Hash Password
 async function HashPassword(pass) {
     const HashPass = await hash(pass, 12)
     return HashPass
 }
-
 
 // JWT token
 async function Token(data) {
@@ -33,8 +30,24 @@ async function Token(data) {
     return theToken
 }
 
+// verify Token
+function verifyToken (token){
 
-export { Token, HashPassword }
+    try{
+
+        const TokenValidationResult = jwt.verify(token , process.env.PRIVATE_KEY )
+        return TokenValidationResult
+
+    }catch(err){
+
+        console.log("Verify Token Error" , err)
+        return false
+
+    }
+
+}
+
+export { Token, HashPassword , verifyToken }
 
 
 

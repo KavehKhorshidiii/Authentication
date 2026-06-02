@@ -1,10 +1,11 @@
 'use server'
 import { userModel } from '@/models/userModel'
-import connectToDB from '@/configs/db/conection'
+import connectToDB from '@/configs/db/connection'
 import { HashPassword } from '@/utils/auth'
 import { Token } from '@/utils/auth'
 import { cookies } from "next/headers" // Cookie
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 
 // prev State And OutPut type
@@ -18,13 +19,11 @@ type ActionStateType = {
 
 export default async function SignupAction(prevState: ActionStateType, formData: FormData): Promise<ActionStateType> {
 
-    try {
-
         // DB Connection
         await connectToDB()
 
         // Users Length
-        const usersLength = await userModel.find() // usersLength.length === 0 ? "Admin" : "USER"
+        const usersLength = await userModel.countDocuments() // usersLength.length === 0 ? "Admin" : "USER"
 
         //Get to FormData
         const { firstname, lastname, username, email, password, role } = {
@@ -33,7 +32,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             username: formData.get('username'),
             email: formData.get('email'),
             password: formData.get('password'),
-            role: usersLength.length === 0 ? "Admin" : "USER"
+            role: usersLength === 0 ? "Admin" : "USER"
         }
 
         // Validation
@@ -69,28 +68,16 @@ export default async function SignupAction(prevState: ActionStateType, formData:
             maxAge: 60 * 60 * 24 * 7,  // 1Week
             path: '/'
         })
-
+        
         // SignUp (Create User)
         await userModel.create({ firstname, lastname, username, email, password: HashPass, role })
-
+        
         // Revalidate Home Page
         revalidatePath('/')
+        
+        redirect('/dashboard')
 
-        return {
-            success: true,
-            error: {},
-            message: 'SignUp is Successfully'
-        }
 
-    } catch (error) {
-
-        return {
-            success: false,
-            error: error as object,
-            message: 'create Error'
-        }
-
-    }
 
 }
 
