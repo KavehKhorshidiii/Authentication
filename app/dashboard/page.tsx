@@ -22,7 +22,7 @@ export default async function Dashboard() {
     }
 
 
-    const userData = await userModel.findById(isVerifyToken.userID._id).select("firstname")
+    const userData = await userModel.findById(isVerifyToken.userID).select("firstname")
     console.log(userData)
 
 
