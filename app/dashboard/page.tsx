@@ -22,10 +22,11 @@ export default async function Dashboard() {
     }
 
 
+    
     const userData = await userModel.findById(isVerifyToken.userID).select("firstname")
 
 
-    
+
     return (
         <div>
             <p>Dashboard</p>
