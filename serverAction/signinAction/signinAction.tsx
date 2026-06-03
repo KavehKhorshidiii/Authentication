@@ -1,12 +1,16 @@
+// Server Action - Signup
+// serverAcrion/signupAction/signupAction.tsx
+
+
 'use server'
 
-import { userModel } from "@/models/userModel"
-import connectionToDB from "@/configs/db/connection"
-import bcrypt from "bcryptjs"
-import { redirect } from "next/navigation"
-import { cookies } from "next/headers" // Cookie
-import { Token } from '@/utils/auth'
 
+import { userModel } from "@/models/userModel" // Model
+import connectionToDB from "@/configs/db/connection" // DataBase Connection
+import bcrypt from "bcryptjs" // bcrypt
+import { redirect } from "next/navigation" // redirect
+import { cookies } from "next/headers" // Cookie
+import { Token } from '@/utils/auth' // roken
 
 
 type ActionStateTypes = {
@@ -15,11 +19,11 @@ type ActionStateTypes = {
     message: string
 }
 
+
 export default async function SigninAction(prevState: ActionStateTypes, formData: FormData) {
 
     // connect to database
     await connectionToDB()
-
 
     // Get to FormData
     const { usernameOrEmail, password } = {
@@ -27,6 +31,7 @@ export default async function SigninAction(prevState: ActionStateTypes, formData
         password: formData.get("password")
     }
 
+		// Validation
     if (!usernameOrEmail || !password) {
         return {
             success: false,
@@ -37,7 +42,6 @@ export default async function SigninAction(prevState: ActionStateTypes, formData
 
     // User Exists 
     const userExists = await userModel.findOne({ $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }] }).select("_id , password")
-    //console.log(userExists)
 
     // user Exists Check
     if (!userExists) {

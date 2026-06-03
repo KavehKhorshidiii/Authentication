@@ -1,10 +1,10 @@
-import Link from "next/link"
-import { checkLogin ,logout } from "@/utils/auth"
+import Link from "next/link" 
+import { checkLogin , logout } from "@/utils/auth" // checkLogin & logout
 
 
 export default async function Menu() {
 
-    const { isLogin, userData } = await checkLogin()
+    const { isLogin, userData } = await checkLogin() // check Login 
 
     return (
         <>
