@@ -1,21 +1,40 @@
-'use client'
 import Link from "next/link"
 import { checkLogin } from "@/utils/auth"
 
 
 
-export default function Menu() {
+export default async function Menu() {
 
-    //const x =  checkLogin()
-    //console.log(x)
+    const { isLogin, userData } = await checkLogin()
+
 
     return (
-        <div className="flex gap-4 p-2 border-2 rounded-2xl">
+        <>
+            {isLogin && (
+                <>
+                    <p className=" text-green-700 text-2xl">Welcome {userData.firstname}</p>
+                </>
+            )}
 
-            <Link href={'/Auth'} className="p-2 text-2xl border rounded-xl">Login</Link>
-            <Link href={''} className="p-2 text-2xl border rounded-xl">Logout</Link>
-            <Link href={''} className="p-2 text-2xl border rounded-xl">Dashboard</Link>
-            <Link href={''} className="p-2 text-2xl border rounded-xl">Admin Panel</Link>
-        </div>
+            <div className="flex gap-4 p-2 border-2 rounded-2xl">
+                {isLogin && (
+                    <>
+                        <Link href={''} className="p-2 text-2xl border rounded-xl">Logout</Link>
+                        <Link href={''} className="p-2 text-2xl border rounded-xl">Dashboard</Link>
+                    </>
+                )}
+                {!isLogin && (
+                    <>
+                        <Link href={'/Auth'} className="p-2 text-2xl border rounded-xl">Login</Link>
+                    </>
+                )}
+                {isLogin && userData.role === "Admin" && (
+                    <>
+                        <Link href={''} className="p-2 text-2xl border rounded-xl">Admin Panel</Link>
+                    </>
+                )}
+            </div>
+
+        </>
     )
 }
