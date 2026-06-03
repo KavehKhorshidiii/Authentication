@@ -56,19 +56,12 @@ async function checkLogin() {
     await connectionToDB()
     const cookieStore = await cookies()
     const token = cookieStore.get("token")?.value
-
-    let isVerifyToken;
-    let userData;
-    try {
-        isVerifyToken = verifyToken(token) 
-        userData = await userModel.findById(isVerifyToken.userID)
-    } catch {
-        console.log("Error")
-    }
-
-    if (isVerifyToken){
+    
+    try{
+        const isVerifyToken = verifyToken(token) 
+        const userData = await userModel.findById(isVerifyToken.userID)
         return { isLogin:true , userData:userData }
-    }else{
+    }catch{
         return { isLogin:false , userData:{}}
     }
 
