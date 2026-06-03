@@ -5,10 +5,7 @@ import { checkLogin ,logout } from "@/utils/auth"
 
 export default async function Menu() {
 
-
     const { isLogin, userData } = await checkLogin()
-
-
 
     return (
         <>
