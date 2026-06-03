@@ -4,6 +4,8 @@ import { cookies } from "next/headers";
 import { userModel } from "@/models/userModel";
 import connectionToDB from "@/configs/db/connection";
 
+
+
 // Hash Password
 async function HashPassword(pass) {
     const HashPass = await hash(pass, 12)
@@ -56,18 +58,23 @@ async function checkLogin() {
     await connectionToDB()
     const cookieStore = await cookies()
     const token = cookieStore.get("token")?.value
-    
-    try{
-        const isVerifyToken = verifyToken(token) 
+
+
+    try {
+        const isVerifyToken = verifyToken(token)
         const userData = await userModel.findById(isVerifyToken.userID)
-        return { isLogin:true , userData:userData }
-    }catch{
-        return { isLogin:false , userData:{}}
+
+        if (userData && isVerifyToken) {
+            return { isLogin: true, userData: userData }
+        } else {
+            return { isLogin: false, userData: {} }
+        }
+
+    } catch {
+        return { isLogin: false, userData: {} }
     }
 
 }
-
-
 
 
 
