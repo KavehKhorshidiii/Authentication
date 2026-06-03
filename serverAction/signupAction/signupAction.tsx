@@ -76,7 +76,7 @@ export default async function SignupAction(prevState: ActionStateType, formData:
         // Revalidate Home Page
         revalidatePath('/')
         
-        redirect('/dashboard')
+        redirect('/')
 
 
 

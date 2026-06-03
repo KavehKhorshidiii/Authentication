@@ -1,5 +1,8 @@
 import { hash } from "bcryptjs" // Hash Password
 import jwt from 'jsonwebtoken'; // JWT 
+import { cookies } from "next/headers";
+import { userModel } from "@/models/userModel";
+import connectionToDB from "@/configs/db/connection";
 
 // Hash Password
 async function HashPassword(pass) {
@@ -31,23 +34,51 @@ async function Token(data) {
 }
 
 // verify Token
-function verifyToken (token){
+function verifyToken(token) {
 
-    try{
+    try {
 
-        const TokenValidationResult = jwt.verify(token , process.env.PRIVATE_KEY )
+        const TokenValidationResult = jwt.verify(token, process.env.PRIVATE_KEY)
         return TokenValidationResult
 
-    }catch(err){
+    } catch (err) {
 
-        console.log("Verify Token Error" , err)
+        console.log("Verify Token Error", err)
         return false
 
     }
 
 }
 
-export { Token, HashPassword , verifyToken }
+// CheckLogin
+async function checkLogin() {
+
+    await connectionToDB()
+    const cookieStore = await cookies()
+    const token = cookieStore.get("token")?.value
+
+    let isVerifyToken;
+    let userData;
+    try {
+        isVerifyToken = verifyToken(token) 
+        userData = await userModel.findById(isVerifyToken.userID)
+    } catch {
+        console.log("Error")
+    }
+
+    if (isVerifyToken){
+        return { isLogin:true , userData:userData }
+    }else{
+        return { isLogin:false , userData:{}}
+    }
+
+}
+
+
+
+
+
+export { Token, HashPassword, verifyToken, checkLogin }
 
 
 

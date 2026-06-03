@@ -64,7 +64,7 @@ export default async function SigninAction(prevState: ActionStateTypes, formData
                 path: '/'
             })
 
-            redirect("/dashboard")
+            redirect("/")
         } else {
             return { success: false, error: {}, message: `The password is incorrect.` }
         }
