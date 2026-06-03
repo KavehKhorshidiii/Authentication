@@ -2,7 +2,6 @@ import { checkLogin } from "@/utils/auth"
 import { redirect } from "next/navigation"
 
 
-
 export default async function AdminPanel() {
     const { userData } = await checkLogin()
 
