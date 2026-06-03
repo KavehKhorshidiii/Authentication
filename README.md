@@ -87,6 +87,7 @@ npm run dev
 - React.js
 - Next.js
 - Tailwind CSS
+- MongoDB
 
 
 <br/>
