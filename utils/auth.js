@@ -15,7 +15,7 @@ async function HashPassword(pass) {
     return HashPass
 }
 
-// JWT token
+// Token
 async function Token(data) {
 
     // Token
