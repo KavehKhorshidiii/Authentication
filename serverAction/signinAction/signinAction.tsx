@@ -1,5 +1,3 @@
-// Server Action - Signup
-// serverAcrion/signupAction/signupAction.tsx
 
 
 'use server'
