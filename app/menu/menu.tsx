@@ -2,7 +2,6 @@ import Link from "next/link"
 import { checkLogin ,logout } from "@/utils/auth"
 
 
-
 export default async function Menu() {
 
     const { isLogin, userData } = await checkLogin()
