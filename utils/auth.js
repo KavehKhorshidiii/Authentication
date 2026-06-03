@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken'; // JWT
 import { cookies } from "next/headers";
 import { userModel } from "@/models/userModel";
 import connectionToDB from "@/configs/db/connection";
+import { redirect } from "next/navigation";
+import { revalidatePath } from 'next/cache' // اضافه کنید
+
 
 
 
@@ -59,10 +62,15 @@ async function checkLogin() {
     const cookieStore = await cookies()
     const token = cookieStore.get("token")?.value
 
+    // Exists Token
+    if (!token) {
+        return { isLogin: false, userData: {} }
+    }
+
 
     try {
         const isVerifyToken = verifyToken(token)
-        const userData = await userModel.findById(isVerifyToken.userID)
+        const userData = await userModel.findById(isVerifyToken.userID, "-_id firstname lastname role")
 
         if (userData && isVerifyToken) {
             return { isLogin: true, userData: userData }
@@ -76,9 +84,18 @@ async function checkLogin() {
 
 }
 
+// Logout
+export async function logout() {
+    'use server'
 
+    const cookie = await cookies()
+    cookie.delete("token")
 
-export { Token, HashPassword, verifyToken, checkLogin }
+    revalidatePath('/')
+    redirect("/")
+}
+
+export { Token, HashPassword, verifyToken, checkLogin, logout }
 
 
 
