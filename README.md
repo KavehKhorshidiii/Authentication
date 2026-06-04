@@ -131,11 +131,11 @@ This project currently does not include any automated tests. However, I plan to 
 ## ScreenShot
 ###### Desktop
 ![Screenshot](./public//screenShot1.png)
-![Screenshot](./public/screenShot2.png)
 
 
 <br/>
 <br/>
+
 
 
 <h3 align="center">
