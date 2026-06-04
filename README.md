@@ -25,8 +25,6 @@ The coffee shop project is my first project
 
 ## Project Description
 
-This is my **first personal project**, built with **Next.js**, even though I haven't formally learned the framework yet. The goal was to explore web development hands-on and practice building a simple coffee shop management app.  
-I'm still learning, and this project is part of my journey. 
 
 
 <br/>
