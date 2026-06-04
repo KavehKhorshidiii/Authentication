@@ -9,6 +9,7 @@ import { revalidatePath } from 'next/cache' // اضافه کنید
 
 
 
+
 // Hash Password
 async function HashPassword(pass) {
     const HashPass = await hash(pass, 12)
