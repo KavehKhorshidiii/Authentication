@@ -55,8 +55,6 @@ The coffee shop project is my first project
 <br/>
 <br/>
 
-<br/>
-
 
 
 ## Installation & Usage

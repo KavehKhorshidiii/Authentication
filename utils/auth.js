@@ -6,7 +6,7 @@ import connectionToDB from "@/configs/db/connection";
 import { redirect } from "next/navigation";
 import { revalidatePath } from 'next/cache'
 
-
+const x
 
 // Hash Password
 async function HashPassword(pass) {
