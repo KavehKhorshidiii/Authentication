@@ -24,6 +24,7 @@ The coffee shop project is my first project
 "This project was developed with NextJs, but I still haven't learned NextJs!"
 
 
+
 <br/>
 <br/>
 
