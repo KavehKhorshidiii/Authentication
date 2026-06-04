@@ -104,7 +104,7 @@ npm run dev
 
 ## TODO (Next Steps)
 
-- [ ] Add DarkMode Botton
+- Add DarkMode Botton
 - [ ] Add unit testing (using Vitest or Jest)
 
 
