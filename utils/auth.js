@@ -6,8 +6,7 @@ import connectionToDB from "@/configs/db/connection";
 import { redirect } from "next/navigation";
 import { revalidatePath } from 'next/cache' // اضافه کنید
 
-
-
+const x;
 
 
 // Hash Password
