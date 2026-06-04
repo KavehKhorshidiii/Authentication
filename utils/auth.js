@@ -4,10 +4,7 @@ import { cookies } from "next/headers";
 import { userModel } from "@/models/userModel";
 import connectionToDB from "@/configs/db/connection";
 import { redirect } from "next/navigation";
-import { revalidatePath } from 'next/cache' // اضافه کنید
-
-
-
+import { revalidatePath } from 'next/cache'
 
 
 
