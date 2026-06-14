@@ -1,176 +1,87 @@
 <h1 align="center">Authentication - Login</h1>
-
-
-
-<br/>
-<br/>
-<br/>
- 
-
-
-## Live Demo  
-[Open the Live Website](https://coffee-shop-two-psi.vercel.app/)
-
-
+<p align="center">  Simple Authentication - Login UI built with Next.js and Tailwind CSS.</p>
 
 <br/>
 <br/>
-
-
 
 ## Description
-
-The coffee shop project is my first project
-"This project was developed with NextJs, but I still haven't learned NextJs!"
-
-
+The coffee shop project is my first project.  
+This project was built to practice Next.js and improve frontend development skills.
 
 <br/>
-<br/>
-
-
-
-## Project Description
-
-
-
-<br/>
-<br/>
-
-
 
 ## Features
-
 - Simple order-taking system
 - Responsive design
 - First personal project
 - Mobile view support
-- Sidebar 
+- Sidebar
 - Dark mode (Considering the user's browser theme)
 - Loading spinner
-
-
-
-
-<br/>
+  
 <br/>
 
-
-
-## Installation & Usage
-
-###### Requirements 
-- Node.js 
-- npm or yarn
-
-
-###### Installation Steps 
-
-1. Clone the project 
-```bash
-git clone https://github.com/Kaveh-Khorshidi/Coffee-Shop.git
-```
-
-2. Move into the project directory
-```bash
-cd Coffee-Shop
-```
-
-3. Install dependencies
-```bash
-npm install
-```
-
-4. Start the development server
-```bash
-npm run dev
-```
-
+## Screenshots
+###### Desktop
+![Screenshot](./public/screenShot1.png)
 
 <br/>
-<br/>
-
 
 ## Tech Stack
-
 - React.js
 - Next.js
 - Tailwind CSS
 - MongoDB
-
-
-<br/>
+  
 <br/>
 
+## Installation & Usage
+###### Requirements 
+- Node.js
+- npm or yarn
+###### Installation Steps 
+1. Clone the project 
+```bash
+git clone https://github.com/Kaveh-Khorshidi/Coffee-Shop.git
+```
+2. Move into the project directory
+```bash
+cd Coffee-Shop
+```
+3. Install dependencies
+```bash
+npm install
+```
+###### Usage Steps
+Start the development server
+```bash
+npm run dev
+```
+
+<br/>
 
 ## Project Goals
-- Practice building a simple app using Next.js and Tailwind CSS  
-
-
+- Practice building applications with Next.js
+- Improve frontend development skills
+- Learn Tailwind CSS
+  
 <br/>
-<br/>
-
 
 ## TODO (Next Steps)
-
-- Add DarkMode Botton
-- Add unit testing (using Vitest or Jest)
-
-
+- [ ] Add a manual dark mode toggle
+- [ ] Add unit testing (using Vitest or Jest)
+      
 <br/>
-<br/>
-
 
 ## License
 This project is licensed under the MIT License.
 
-
-<br/>
 <br/>
 
+## Author
 
-## Testing
-This project currently does not include any automated tests. However, I plan to add testing in the future using either **Vitest** or **Jest**.
+**Kaveh Khorshidi**
 
+[![GitHub](https://img.shields.io/badge/GitHub-kavehkhorshidiii-181717?logo=github)](https://github.com/kavehkhorshidiii)
 
-<br/>
-<br/>
-
-
-## ScreenShot
-###### Desktop
-![Screenshot](./public//screenShot1.png)
-
-
-
-<br/>
-<br/>
-
-
-
-<h3 align="center">
-
-<a href="https://github.com/Kaveh-Khorshidi" >
-"Developed  by  Kaveh Khorshidi"
-</a>
-
-</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[![Email](https://img.shields.io/badge/Email-kavehkhorshidiii%40gmail.com-181717?logo=gmail&logoColor=white)](mailto:kavehkhorshidiii@gmail.com)
