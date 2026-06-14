@@ -1,23 +1,22 @@
 <h1 align="center">Authentication - Login</h1>
-<p align="center">  Simple Authentication - Login UI built with Next.js and Tailwind CSS.</p>
+<p align="center">  Simple Authentication - Login UI built with Next.js and MongoDb.</p>
 
 <br/>
 <br/>
 
 ## Description
-The coffee shop project is my first project.  
-This project was built to practice Next.js and improve frontend development skills.
+This is a simple mini project built with Next.js and MongoDB that implements user authentication, allowing users to sign up, sign in, and sign out. It uses MongoDB to store user data and Next.js API routes for the backend logic, providing a basic authentication system that can be extended for larger applications.
+
 
 <br/>
 
 ## Features
-- Simple order-taking system
-- Responsive design
-- First personal project
-- Mobile view support
-- Sidebar
-- Dark mode (Considering the user's browser theme)
-- Loading spinner
+- User authentication system (Sign Up, Sign In, Sign Out)
+- Password hashing for secure credential storage
+- MongoDB database integration for user data management
+- Next.js API routes for backend authentication logic
+- Form validation for user inputs
+- Clear success and error messages for better user experience
   
 <br/>
 
@@ -30,7 +29,6 @@ This project was built to practice Next.js and improve frontend development skil
 ## Tech Stack
 - React.js
 - Next.js
-- Tailwind CSS
 - MongoDB
   
 <br/>
@@ -60,21 +58,13 @@ npm run dev
 
 <br/>
 
+ 
 ## Project Goals
-- Practice building applications with Next.js
 - Improve frontend development skills
-- Learn Tailwind CSS
+- Learn mongoDB
+- learn Authentication
   
-<br/>
-
-## TODO (Next Steps)
-- [ ] Add a manual dark mode toggle
-- [ ] Add unit testing (using Vitest or Jest)
-      
-<br/>
-
-## License
-This project is licensed under the MIT License.
+    
 
 <br/>
 
